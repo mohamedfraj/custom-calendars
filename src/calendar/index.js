@@ -29,7 +29,17 @@ import styleConstructor from "./style";
 import CalendarHeader from "./header";
 import Day from "./day/index";
 import BasicDay from "./day/basic";
-import normalize from "../../../normalize";
+import {Dimensions, PixelRatio} from 'react-native';
+
+const {width: SCREEN_WIDTH} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 375;
+
+const normalize = size => {
+  const newSize = size * scale;
+  return Math.round(PixelRatio.roundToNearestPixel(newSize));
+};
 /**
  * @description: Calendar component
  * @example: https://github.com/wix/react-native-calendars/blob/master/example/src/screens/calendars.js
